@@ -1,0 +1,192 @@
+%
+% LaTeX Helper Packages
+%
+
+% General Packages
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{calc}
+\usepackage{xcolor}
+\usepackage{xparse}
+
+% Math Scripts/Symbols Packages
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{calligra}
+\usepackage{cancel}
+\usepackage{cases}
+\usepackage[per-mode=fraction]{siunitx}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmonofont{IosevkaTerm Nerd Font Mono}
+\usepackage[version=4]{mhchem}
+
+% Figure Packages
+\usepackage{caption}
+\usepackage{graphicx}
+% \usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+
+% Links/Code Packages
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage[skins,minted]{tcolorbox}
+
+%
+% Engineering/Math Helper Commands
+%
+
+% Such That
+\newcommand{\st}{\text{ s.t. }}
+% With Regards To
+\newcommand{\wrt}{\text{ w.r.t. }}
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+\NewDocumentCommand{\fn}{s m o}{\, \IfBooleanTF{#1}{\mathrm{#2}}{\ensuremath{#2}}\IfValueT{#3}{\!\left(#3\right)}}
+
+% For derivatives
+\newcommand{\drv}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\ddrv}[2]{\frac{\mathrm{d}^{2}#1}{\mathrm{d}{#2}^{2}}}
+\newcommand{\deriv}[2]{\frac{\mathrm{d}}{\mathrm{d}#1}\!\left(#2\right)}
+\newcommand{\dderiv}[2]{\frac{\mathrm{d}^{2}}{\mathrm{d}{#1}^{2}}\!\left(#2\right)}
+
+% For partial derivatives
+\newcommand{\pdrv}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\pddrv}[2]{\frac{\partial^{2}#1}{\partial{#2}^{2}}}
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial#1}\!\left(#2\right)}
+\newcommand{\pdderiv}[2]{\frac{\partial^{2}}{\partial{}{#1}^2}\!\left(#2\right)}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\NewDocumentCommand{\E}{o}{\,\mathrm{E}\IfValueT{#1}{\!\left(#1\right)}}
+\NewDocumentCommand{\Var}{o}{\,\mathrm{Var}\IfValueT{#1}{\!\left(#1\right)}}
+\NewDocumentCommand{\Cov}{o}{\,\mathrm{Cov}\IfValueT{#1}{\!\left(#1\right)}}
+\NewDocumentCommand{\Bias}{o}{\,\mathrm{Bias}\IfValueT{#1}{\!\left(#1\right)}}
+\NewDocumentCommand{\Prob}{o}{\,\mathrm{Pr}\IfValueT{#1}{\!\left(#1\right)}}
+
+% Col and Row Vectors
+\newcommand{\bvect}[1]{\ensuremath{\begin{bmatrix}#1\end{bmatrix}}}
+\newcommand{\pvect}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+
+% For writing vectors
+\let\oldhat\hat{}
+\let\oldvec\vec{}
+\renewcommand{\vec}[1]{\oldvec{\mathbf{#1}}}
+\newcommand{\vecb}[1]{\mathbf{#1}}
+\newcommand{\vech}[1]{\oldhat{\mathbf{#1}}}
+
+\newcommand{\cpvect}[2]{ \begin{pmatrix} #1 \\ #2 \end{pmatrix} }
+\newcommand{\cptvect}[3]{ \begin{pmatrix} #1 \\ #2 \\ #3 \end{pmatrix} }
+\newcommand{\cbvect}[2]{ \begin{bmatrix} #1 \\ #2 \end{bmatrix} }
+\newcommand{\cbtvect}[3]{ \begin{bmatrix} #1 \\ #2 \\ #3 \end{bmatrix} }
+\newcommand{\rpvect}[2]{ \begin{pmatrix} #1 & #2 \end{pmatrix} }
+\newcommand{\rptvect}[3]{ \begin{pmatrix} #1 & #2 & #3 \end{pmatrix} }
+\newcommand{\rbvect}[2]{ \begin{bmatrix} #1 & #2 \end{bmatrix} }
+\newcommand{\rbtvect}[3]{ \begin{bmatrix} #1 & #2 & #3 \end{bmatrix} }
+\newcommand{\vect}[2]{ \langle{} #1, #2 \rangle{} }
+\newcommand{\tvect}[3]{ \langle{} #1, #2, #3 \rangle{} }
+\newcommand{\qvect}[4]{ \langle{} #1, #2, #3, #4 \rangle{} }
+
+% For sin and cos and tangent, etc
+\let\oldsin\sin{}
+\renewcommand{\sin}[1]{\oldsin\!\left(#1\right)}
+\let\oldcos\cos{}
+\renewcommand{\cos}[1]{\oldcos\!\left(#1\right)}
+\let\oldtan\tan{}
+\renewcommand{\tan}[1]{\oldtan\!\left(#1\right)}
+\let\oldcsc\csc{}
+\renewcommand{\csc}[1]{\oldcsc\!\left(#1\right)}
+\let\oldsec\sec{}
+\renewcommand{\sec}[1]{\oldsec\!\left(#1\right)}
+\let\oldcot\cot{}
+\renewcommand{\cot}[1]{\oldcot\!\left(#1\right)}
+\let\oldsinh\sinh{}
+\renewcommand{\sinh}[1]{\oldsinh\!\left(#1\right)}
+\let\oldcosh\cosh{}
+\renewcommand{\cosh}[1]{\oldcosh\!\left(#1\right)}
+\let\oldtanh\tanh{}
+\renewcommand{\tanh}[1]{\oldtanh\!\left(#1\right)}
+\let\oldcoth\coth{}
+\renewcommand{\coth}[1]{\oldcoth\!\left(#1\right)}
+\let\oldarcsin\arcsin{}
+\renewcommand{\arcsin}[1]{\oldarcsin\!\left(#1\right)}
+\let\oldarccos\arccos{}
+\renewcommand{\arccos}[1]{\oldarccos\!\left(#1\right)}
+\let\oldarctan\arctan{}
+\renewcommand{\arctan}[1]{\oldarctan\!\left(#1\right)}
+
+% For log, ln, etc
+\let\oldlog\log{}
+\renewcommand{\log}[1]{\oldlog\!\left(#1\right)}
+\let\oldln\ln{}
+\renewcommand{\ln}[1]{\oldln\!\left(#1\right)}
+
+% For Re, Im, etc
+\let\oldRe\Re{}
+\renewcommand{\Re}[1]{\oldRe\!\left\{#1\right\}}
+\let\oldIm\Im{}
+\renewcommand{\Im}[1]{\oldIm\!\left\{#1\right\}}
+
+% For Laplace, ILaplace, etc
+\newcommand{\laplace}[1]{\,\mathscr{L}\!\left\{#1\right\}}
+\newcommand{\ilaplace}[1]{\,\mathscr{L}^{-1}\!\left\{#1\right\}}
+
+% For integrals
+\let\oldint\int{}
+\NewDocumentCommand{\intidef}{m o}{\oldint{} #1 \IfValueT{#2}{\,\mathrm{d}#2}}
+\newcommand{\intdef}[4]{\oldint_{#1}^{#2} #3 \,\mathrm{d}#4}
+
+% Defining Units that are not in the SI base
+\DeclareSIUnit\bar{bar}
+\DeclareSIUnit\foot{ft}
+\DeclareSIUnit\inch{in}
+\DeclareSIUnit\year{yr}
+\DeclareSIUnit\hour{hr}
+\DeclareSIUnit\failure{failure}
+\DeclareSIUnit\cycle{cycle}
+\DeclareSIUnit\DU{DU}
+\DeclareSIUnit\AU{AU}
+\DeclareSIUnit\TU{TU}
+\DeclareSIUnit\dollar{\$}
+\DeclareSIUnit\cent{\text{\textcent}}
+\DeclareSIUnit\c{\degreeCelsius}
+\DeclareSIUnit\deg{\degree}
+\DeclareSIUnit\rad{\radian}
+\DeclareSIUnit\rev{rev}
+
+% Griffiths script char LOL
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\rcurs}{\mathcalligra{r}\,}
+\newcommand{\brcurs}{\pmb{\mathcalligra{r}}\,}
+
+% Hyperlink config
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+    }
+\urlstyle{same}
+
+% Code Listing style
+\definecolor{mintedbackground}{rgb}{0.95,0.95,0.95}
+\definecolor{mintedframe}{rgb}{0.70,0.85,0.95}
+\setminted{
+	bgcolor=mintedbackground,
+	linenos=true,
+	numberblanklines=true,
+	numbersep=12pt,
+	numbersep=5pt,
+	autogobble=true,
+	frame=leftline,
+	framesep=2mm,
+	tabsize=4,
+	breaklines=true,
+	style=sas,
+}
+

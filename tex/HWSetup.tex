@@ -102,11 +102,15 @@
 \linespread{1.1}
 
 \pagestyle{fancy}
-\lhead{\hmwkAuthorName}
-\chead{\hmwkClass\ (\hmwkClassInstructor,\ \hmwkClassTime): \hmwkTitle}
-\rhead{\firstxmark}
-\lfoot{\lastxmark}
-\cfoot{\thepage}
+\fancyhead[L]{\hmwkAuthorName}
+\fancyhead[C]{\hmwkClass\ (\hmwkClassInstructor,\ \hmwkClassTime): \hmwkTitle}
+\fancyhead[R]{\firstxmark}
+\fancyfoot[L]{\lastxmark}
+\fancyfoot[C]{\thepage}
+
+\fancyheadwidth[L]{0.3\headwidth}
+\fancyheadwidth[C]{0.5\headwidth}
+\fancyheadwidth[R]{0.3\headwidth}
 
 \renewcommand\headrulewidth{0.4pt}
 \renewcommand\footrulewidth{0.4pt}

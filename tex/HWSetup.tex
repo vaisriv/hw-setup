@@ -1,100 +1,131 @@
+%
+% Document Type
+%
 \documentclass{article}
 
-\usepackage{fancyhdr}
-\usepackage{extramarks}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{fontspec}
-\usepackage{polyglossia}
-\usepackage{xparse}
-\usepackage{xcolor}
-\usepackage{bm}
-\usepackage{tikz}
-\usepackage{graphicx}
-\usepackage{caption}
-\usepackage{subcaption}
+%
+% LaTeX Helper Packages
+%
+
+% General Packages
 \usepackage[plain]{algorithm}
 \usepackage{algpseudocode}
-\usepackage{minted}
-\usepackage{hyperref}
-\usepackage[per-mode=fraction]{siunitx}
 \usepackage{calc}
+\usepackage{enumitem}
+\usepackage{extramarks}
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\usepackage{xcolor}
+\usepackage{xparse}
+
+% Font/Localization Packages
+\usepackage[en-US, showseconds = false]{datetime2}
+\usepackage[english]{babel}
+\usepackage{calligra}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+% Math Scripts/Symbols Packages
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
 \usepackage{cancel}
 \usepackage{cases}
-\usepackage{calligra}
-\usepackage{enumitem}
+\usepackage{padcount}
+\usepackage[per-mode = fraction]{siunitx}
+\usepackage[version = 4]{mhchem}
+
+% Figure Packages
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{newfloat}
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning}
+
+% Array and Table Packages
 \usepackage[l3]{csvsimple}
-\usepackage[en-US, showseconds=false]{datetime2}
 \usepackage{array}
-\usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{colortbl}
-\usepackage{padcount}
-\usepackage{nomencl}
+\usepackage{longtable}
 
-\usepackage[backend=biber, style=ieee, dateabbrev=false]{biblatex}
+% Report Packages
+\usepackage{nomencl}
+\usepackage[
+    backend = biber,
+    style = ieee,
+    dateabbrev = false,
+    hyperref = true,
+    backref = true
+]{biblatex}
+
+% Links/Code Packages
+\usepackage[newfloat]{minted}
+\usepackage[skins, minted]{tcolorbox}
+\usepackage{hyperref}
 
 %
 % Localization Settings
 %
 
 \setdefaultlanguage{english}
-\DTMlangsetup[en-US]{ord=raise}
+\DTMlangsetup[en-US]{ord = raise}
 
 \DTMnewtimestyle{timestyle-12hr_2digit_caps}{%
-	\renewcommand{\DTMdisplaytime}[3]{%
-		\def\THEHOUR{##1}\def\THEAMPM{AM}% Assume AM
-		\ifnum##1>12
-			\edef\THEHOUR{\number\numexpr##1-12}% Correct for...
-			\edef\THEAMPM{PM}% ...PM
-		\fi%
-		\ifnum##1=12
-			\edef\THEHOUR{12}% Correct for...
-			\edef\THEAMPM{PM}% ...PM
-		\fi%
-		\ifnum##1=0
-			\edef\THEHOUR{12}% Correct for...
-			\edef\THEAMPM{AM}% ...AM
-		\fi%
-		\DTMtwodigits{\THEHOUR}% <hh>
-		\DTMsep{hourmin}%
-		\DTMtwodigits{##2}% <mm>
-		\ifDTMshowseconds
-			\DTMsep{minsec}%
-			\DTMtwodigits{##3}% <ss>
-		\fi%
-		\space
-		\THEAMPM% AM/PM
-	}%
+    \renewcommand{\DTMdisplaytime}[3]{%
+        \def\THEHOUR{##1}\def\THEAMPM{AM}% Assume AM
+        \ifnum##1>12
+            \edef\THEHOUR{\number\numexpr##1-12}% Correct for...
+            \edef\THEAMPM{PM}% ...PM
+        \fi%
+        \ifnum##1=12
+            \edef\THEHOUR{12}% Correct for...
+            \edef\THEAMPM{PM}% ...PM
+        \fi%
+        \ifnum##1=0
+            \edef\THEHOUR{12}% Correct for...
+            \edef\THEAMPM{AM}% ...AM
+        \fi%
+        \DTMtwodigits{\THEHOUR}% <hh>
+        \DTMsep{hourmin}%
+        \DTMtwodigits{##2}% <mm>
+        \ifDTMshowseconds
+            \DTMsep{minsec}%
+            \DTMtwodigits{##3}% <ss>
+        \fi%
+        \space
+        \THEAMPM% AM/PM
+    }%
 }
 
 \DTMnewtimestyle{timestyle-12hr_2digit_sc}{%
-	\renewcommand{\DTMdisplaytime}[3]{%
-		\def\THEHOUR{##1}\def\THEAMPM{am}% Assume AM
-		\ifnum##1>12
-			\edef\THEHOUR{\number\numexpr##1-12}% Correct for...
-			\edef\THEAMPM{pm}% ...PM
-		\fi%
-		\ifnum##1=12
-			\edef\THEHOUR{12}% Correct for...
-			\edef\THEAMPM{pm}% ...PM
-		\fi%
-		\ifnum##1=0
-			\edef\THEHOUR{12}% Correct for...
-			\edef\THEAMPM{am}% ...AM
-		\fi%
-		\DTMtwodigits{\THEHOUR}% <hh>
-		\DTMsep{hourmin}%
-		\DTMtwodigits{##2}% <mm>
-		\ifDTMshowseconds
-			\DTMsep{minsec}%
-			\DTMtwodigits{##3}% <ss>
-		\fi%
-		\space
-		\textsc{\THEAMPM}% AM/PM
-	}%
+    \renewcommand{\DTMdisplaytime}[3]{%
+        \def\THEHOUR{##1}\def\THEAMPM{am}% Assume AM
+        \ifnum##1>12
+            \edef\THEHOUR{\number\numexpr##1-12}% Correct for...
+            \edef\THEAMPM{pm}% ...PM
+        \fi%
+        \ifnum##1=12
+            \edef\THEHOUR{12}% Correct for...
+            \edef\THEAMPM{pm}% ...PM
+        \fi%
+        \ifnum##1=0
+            \edef\THEHOUR{12}% Correct for...
+            \edef\THEAMPM{am}% ...AM
+        \fi%
+        \DTMtwodigits{\THEHOUR}% <hh>
+        \DTMsep{hourmin}%
+        \DTMtwodigits{##2}% <mm>
+        \ifDTMshowseconds
+            \DTMsep{minsec}%
+            \DTMtwodigits{##3}% <ss>
+        \fi%
+        \space
+        \textsc{\THEAMPM}% AM/PM
+    }%
 }
 
 \DTMsettimestyle{timestyle-12hr_2digit_caps}
@@ -103,12 +134,12 @@
 % Basic Document Settings
 %
 
-\topmargin=-0.45in
-\evensidemargin=0in
-\oddsidemargin=0in
-\textwidth=6.5in
-\textheight=9.0in
-\headsep=0.25in
+\topmargin = -0.45in
+\evensidemargin = 0in
+\oddsidemargin = 0in
+\textwidth = 6.5in
+\textheight = 9.0in
+\headsep = 0.25in
 
 \linespread{1.1}
 
@@ -129,6 +160,56 @@
 \setlength\parindent{0pt}
 \allowdisplaybreaks{}
 
+% number floats within sections
+\numberwithin{equation}{subsection}
+\numberwithin{figure}{subsection}
+\numberwithin{listing}{subsection}
+\numberwithin{table}{subsection}
+
+%
+% Link, Bibliography, and Code Settings
+%
+
+% Hyperlink Config
+\hypersetup{
+    colorlinks = true,
+    % linkcolor = blue,
+    anchorcolor = black,
+    citecolor = black,
+    filecolor = magenta,
+    linkcolor = black,
+    menucolor = black,
+    urlcolor = blue,
+    pagebackref = true,
+}
+\urlstyle{same}
+
+% References Config
+\DefineBibliographyStrings{english}{
+    backrefpage = {see p.}, % for single page number
+    backrefpages = {see pp.} % for multiple page numbers
+}
+
+% Code Listing Style
+\setmonofont{IosevkaTerm Nerd Font Mono}
+\definecolor{mintedbackground}{rgb}{0.95,0.95,0.95}
+\definecolor{mintedframe}{rgb}{0.70,0.85,0.95}
+\setminted{
+    bgcolor = mintedbackground,
+    linenos = true,
+    numberblanklines = true,
+    numbersep = 12pt,
+    numbersep = 5pt,
+    autogobble = true,
+    frame = leftline,
+    framesep = 2mm,
+    tabsize = 4,
+    breaklines = true,
+    style = sas,
+    codetagify = true
+}
+\newenvironment{codeblock}{\captionsetup{type = listing}}{}
+
 % Assignment Info
 \NewDocumentCommand{\hwkTitle}{m}{\newcommand{\hmwkTitle}{#1}}
 \NewDocumentCommand{\hwkSubTitle}{m}{\newcommand{\hmwkSubTitle}{#1}}
@@ -146,12 +227,12 @@
 %
 
 \title{
-	\vspace{2in}
-	\textmd{\textbf{\hmwkClass}}\\
-	\textmd{\textbf{\hmwkTitle:}\ \hmwkSubTitle}\\
-	\normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at\ \hmwkDueTime}\\
-	\vspace{0.1in}\large{\textit{\hmwkClassInstructor,\ \hmwkClassTime}}
-	\vspace{3in}
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass}}\\
+    \textmd{\textbf{\hmwkTitle:}\ \hmwkSubTitle}\\
+    \normalsize\vspace{0.1in}\small{Due\ on\ \hmwkDueDate\ at\ \hmwkDueTime}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor,\ \hmwkClassTime}}
+    \vspace{3in}
 }
 \author{\textbf{\hmwkAuthorName}}
 \date{\hmwkCompletionDate}
@@ -161,34 +242,34 @@
 %
 
 \newcommand{\enterProblemHeader}[1]{
-	\nobreak\extramarks{}{Problem #1 continued on next page\ldots}\nobreak{}
-	\nobreak\extramarks{Problem #1 (continued)}{Problem #1 continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{}{Problem #1 continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem #1 (continued)}{Problem #1 continued on next page\ldots}\nobreak{}
 }
 
 \newcommand{\exitProblemHeader}[1]{
-	\nobreak\extramarks{Problem #1 (continued)}{Problem #1 continued on next page\ldots}\nobreak{}
-	\nobreak\extramarks{Problem #1}{}\nobreak{}
+    \nobreak\extramarks{Problem #1 (continued)}{Problem #1 continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem #1}{}\nobreak{}
 }
 
 %
 % Homework Problem Environment
 %
 \NewDocumentEnvironment{hwkProblem}{m m}{
-	\section*{Problem #1: #2}
-	\enterProblemHeader{#1}
-	\setcounter{partCounter}{1}
+    \section*{Problem #1: #2}
+    \enterProblemHeader{#1}
+    \setcounter{partCounter}{1}
 }{
-	\exitProblemHeader{#1}
-	\newpage
+    \exitProblemHeader{#1}
+    \newpage
 }
 
 % if star, no new page
 \NewDocumentEnvironment{hwkProblem*}{m m}{
-	\section*{Problem #1: #2}
-	\enterProblemHeader{#1}
-	\setcounter{partCounter}{1}
+    \section*{Problem #1: #2}
+    \enterProblemHeader{#1}
+    \setcounter{partCounter}{1}
 }{
-	\exitProblemHeader{#1}
+    \exitProblemHeader{#1}
 }
 
 % Alias for the Solution section header
@@ -197,20 +278,20 @@
 % Alias for the Solution Part subsection header
 \newcounter{partCounter}
 \NewDocumentCommand{\hwkPart}{o}{
-	\vspace{\baselineskip{} / 2}
-	\IfNoValueTF{#1}{
-		\textbf{\large Part \Alph{partCounter}}
-		\stepcounter{partCounter}
-	}{
-		\textbf{\large #1}
-		% \stepcounter{partCounter}
-	}
-	\vspace{\baselineskip{} / 2}
+    \vspace{\baselineskip{} / 2}
+    \IfNoValueTF{#1}{
+        \textbf{\large Part \Alph{partCounter}}
+        \stepcounter{partCounter}
+    }{
+        \textbf{\large #1}
+        % \stepcounter{partCounter}
+    }
+    \vspace{\baselineskip{} / 2}
 }
 
 % Alias for Code subsections in Solutions
 \newcommand{\hwkCode}{
-	\vspace{\baselineskip{} / 2}
-	\textbf{\large Code}
-	\vspace{\baselineskip{} / 2}
+    \vspace{\baselineskip{} / 2}
+    \textbf{\large Code}
+    \vspace{\baselineskip{} / 2}
 }

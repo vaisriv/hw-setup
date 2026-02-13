@@ -1,4 +1,9 @@
 %
+% Document Type
+%
+% Bindings, Configuration, and Setup for Engineering Documents
+
+%
 % LaTeX Helper Packages
 %
 
@@ -6,8 +11,19 @@
 \usepackage[plain]{algorithm}
 \usepackage{algpseudocode}
 \usepackage{calc}
+\usepackage{enumitem}
+\usepackage{extramarks}
+\usepackage{fancyhdr}
+\usepackage{lipsum}
 \usepackage{xcolor}
 \usepackage{xparse}
+
+% Font/Localization Packages
+\usepackage[en-US, showseconds = false]{datetime2}
+\usepackage[english]{babel}
+\usepackage{calligra}
+\usepackage{fontspec}
+\usepackage{polyglossia}
 
 % Math Scripts/Symbols Packages
 \usepackage{amsfonts}
@@ -15,36 +31,41 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{bm}
-\usepackage{calligra}
 \usepackage{cancel}
 \usepackage{cases}
-\usepackage[per-mode=fraction]{siunitx}
-\usepackage{fontspec}
-\usepackage{polyglossia}
-\setmonofont{IosevkaTerm Nerd Font Mono}
-\usepackage[version=4]{mhchem}
 \usepackage{padcount}
+\usepackage[per-mode = fraction]{siunitx}
+\usepackage[version = 4]{mhchem}
 
 % Figure Packages
 \usepackage{caption}
+\usepackage{subcaption}
 \usepackage{graphicx}
-% \usepackage{subcaption}
+\usepackage{newfloat}
 \usepackage{tikz}
-\usetikzlibrary{automata,positioning}
+\usetikzlibrary{automata, positioning}
 
 % Array and Table Packages
+\usepackage[l3]{csvsimple}
 \usepackage{array}
-\usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{colortbl}
+\usepackage{longtable}
+
+% Report Packages
+\usepackage{nomencl}
+\usepackage[
+    backend = biber,
+    style = ieee,
+    dateabbrev = false,
+    hyperref = true,
+    backref = true
+]{biblatex}
 
 % Links/Code Packages
+\usepackage[newfloat]{minted}
+\usepackage[skins, minted]{tcolorbox}
 \usepackage{hyperref}
-\usepackage{minted}
-\usepackage[skins,minted]{tcolorbox}
-
-% Nomenclature Package
-\usepackage{nomencl}
 
 %
 % Engineering/Math Helper Commands
@@ -173,30 +194,3 @@
 \DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
 \newcommand{\rcurs}{\mathcalligra{r}\,}
 \newcommand{\brcurs}{\pmb{\mathcalligra{r}}\,}
-
-% Hyperlink config
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,
-    urlcolor=blue,
-    }
-\urlstyle{same}
-
-% Code Listing style
-\definecolor{mintedbackground}{rgb}{0.95,0.95,0.95}
-\definecolor{mintedframe}{rgb}{0.70,0.85,0.95}
-\setminted{
-	bgcolor=mintedbackground,
-	linenos=true,
-	numberblanklines=true,
-	numbersep=12pt,
-	numbersep=5pt,
-	autogobble=true,
-	frame=leftline,
-	framesep=2mm,
-	tabsize=4,
-	breaklines=true,
-	style=sas,
-}
-

@@ -1,0 +1,9 @@
+[package]
+name = "vai homework setup"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["Vai Srivastava <@vaisriv>"]
+license = "MIT"
+description = "Homework setup and templating for Engineering assignments"
+categories = ["layout", "report"]
+disciplines = ["engineering", "education", "mathematics", "physics", "computer-science", "chemistry"]
